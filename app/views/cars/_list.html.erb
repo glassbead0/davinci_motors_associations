@@ -1,0 +1,14 @@
+<%= content_tag_for(:tr, @cars) do |car| %>
+  <td><%= car.model %></td>
+  <td><%= car.make %></td>
+  <td><%= car.year %></td>
+  <td><%= number_to_currency(car.price) %></td>
+  <% if current_user && current_user.cars.include?(car) %>
+    <td><%= link_to 'UnClaim', unclaim_car_path(car) %></td>
+  <% elsif current_user %>
+    <td><%= link_to 'Claim', claim_car_path(car) %></td>
+  <% end %>
+  <td><%= link_to 'Show', car %></td>
+  <td><%= link_to 'Edit', edit_car_path(car) %></td>
+  <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>

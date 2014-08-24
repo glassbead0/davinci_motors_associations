@@ -4,6 +4,7 @@ gem 'rspec-rails'
 gem 'guard-bundler'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
+gem 'table_print'
 group :test, :darwin, :development do
   gem 'ruby_gntp'
 end

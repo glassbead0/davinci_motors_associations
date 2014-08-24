@@ -6,7 +6,16 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'cars#index'
 
-  resources :cars
+  resources :cars do
+    member do   # member adds routes to individual cars
+      get 'claim' => 'cars#claim'
+      get 'unclaim' => 'cars#unclaim'
+
+    end
+    collection do    # adds routes on to all cars
+      get 'my' => 'cars#mine'
+    end
+  end
   resources :users,
     only: [:new, :create],
     path_names: { new: 'signup' }
@@ -19,5 +28,7 @@ Rails.application.routes.draw do
 
   delete '/logout',
     to: 'sessions#destroy'
+
+
 
 end
